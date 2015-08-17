@@ -19,6 +19,15 @@ ORIGINAL_PATH=$PATH
 PATH=$HOME/bin\
 :$ORIGINAL_PATH
 
+# VirtualBox Home
+VBOX_USER_HOME=/home/john/VirtualBox
+
+# Crafty
+CRAFTY_TB_PATH=/library/chess/egtbs
+CRAFTY_LOG_PATH=/home/john/.crafty
+CRAFTY_BOOK_PATH=/home/john/.crafty
+CRAFTY_RC_PATH=/home/john/.crafty
+
 # Start out with the default environment.
 Z_ENVIRONMENT=default
 
