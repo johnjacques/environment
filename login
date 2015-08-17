@@ -12,16 +12,7 @@
 set -a
 
 # Environment Directory
-ENVIRONMENT=$HOME/bin/environment
-
-# VirtualBox
-VBOX_USER_HOME=$HOME/VirtualBox
-
-# Crafty
-CRAFTY_LOG_PATH=/home/john/.crafty
-CRAFTY_RC_PATH=/home/john/.crafty
-CRAFTY_TB_PATH=/library/chess/egtbs
-CRAFTY_BOOK_PATH=/home/john/.crafty
+ENVIRONMENT=$HOME/.environment
 
 # Path
 ORIGINAL_PATH=$PATH

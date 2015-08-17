@@ -19,9 +19,6 @@ alias lad="ls -aFd"
 alias lla="ls -laF"
 alias llad="ls -laFd"
 
-alias android-connect='\"mtpfs -o allow_other /home/john/nexus\"'
-alias android-disconnect='\"fusermount -u /home/john/nexus\"'
-
 # Options
 
 shopt -s checkwinsize
@@ -33,7 +30,6 @@ HISTCONTROL=ignoreboth
 function zclear {
     clear
     date
-    fortune
     echo -n -e '\e[3J'
 }
 
@@ -80,13 +76,7 @@ function ztitle {
 }
 
 # Prompt
-if [ -f /etc/debian_chroot ]
-then
-    CHROOT_NAME=`cat /etc/debian_chroot`
-    export PS1="[ (CHROOT::$CHROOT_NAME) \u@\h ] "
-else
-    export PS1="[ \u@\h ] "
-fi
+export PS1="[ \u@\h ] "
 
 # Update history etc.
 Z_DEFAULT_ENVIRONMENT_SOURCED=true
