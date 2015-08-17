@@ -1,0 +1,66 @@
+#-*-sh-*-
+
+###########################################################################
+#
+# functions
+#
+###########################################################################
+
+function __zclear {
+    cd
+    clear
+    date
+}
+
+function __zinfo {
+    echo
+    echo "Shell History"
+    echo "============="
+    echo -e $Z_SHELL_HISTORY
+    echo
+}
+
+function __zsize {
+    ls -laR $* | awk '{ x += $5 } ; END { print "Total Bytes: " x }'
+}
+
+function __zclean {
+    trash=`find . -type f -print | egrep '(~$)|(^.*/core$)' | sed 's/ /\\\\ /g'`
+
+    for i in $trash
+    do
+	echo "Removing $i"
+	rm -f $i
+    done
+}
+
+function __zmodes {
+    modes=`ls $ENVIRONMENT/*.environment | egrep -v default`
+
+    for i in $modes
+    do
+        echo `basename $i | cut -d. -f1`
+    done
+}
+
+function __zmode {
+    if [ -f $ENVIRONMENT/$1.environment ]
+    then
+        export Z_ENVIRONMENT=$1
+        $SHELL
+    else
+        echo "** Unknown Mode: $1"
+    fi
+}
+
+function __zstamp {
+    echo "`date +%d%b%Y`_`date +%Hh%Mm%Ss`"
+}
+
+function __zsource {
+    find . -type f | egrep '(\.c$|\.h$|\.s$|\.S$|\.java$)'
+}
+
+function __ztitle {
+    echo "]0;${1}"
+}

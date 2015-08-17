@@ -1,0 +1,98 @@
+#-*-sh-*-
+
+###########################################################################
+#
+# default.environment
+#
+# My standard environment
+#
+###########################################################################
+
+# Aliases
+
+alias ls="ls -F"
+alias lsd="ls -Fd"
+alias ll="ls -lF"
+alias lld="ls -Fd"
+alias la="ls -aF"
+alias lad="ls -aFd"
+alias lla="ls -laF"
+alias llad="ls -laFd"
+
+alias android-connect='\"mtpfs -o allow_other /home/john/nexus\"'
+alias android-disconnect='\"fusermount -u /home/john/nexus\"'
+
+# Options
+
+shopt -s checkwinsize
+HISTCONTROL=ignoredups
+HISTCONTROL=ignoreboth
+
+# Functions
+
+function zclear {
+    clear
+    date
+    fortune
+    echo -n -e '\e[3J'
+}
+
+function zinfo {
+    echo -e "$Z_SHELL_HISTORY"
+}
+
+function zsize {
+    ls -laR $* | awk '{ x += $5 } ; END { print "Total Bytes: " x }'
+}
+
+function zclean {
+    find . -type f -name '*~' -o -name 'core' | while read file
+    do
+	echo "Removing $file"
+	rm -f "$file"
+    done
+}
+
+function zmodes {
+    modes=`ls $ENVIRONMENT/*.environment | egrep -v default`
+    for i in $modes
+    do
+      echo `basename $i | cut -d. -f1`
+    done
+}
+
+function zmode {
+    export Z_ENVIRONMENT="${1}"
+    ${SHELL}
+    Z_ENVIRONMENT=default
+}
+
+function zstamp {
+    echo "`date +%d%b%Y`_`date +%Hh%Mm%Ss`"
+}
+
+function zsource {
+    find . -type f | egrep '(\.c$|\.h$|\.cc$|\.hh$|\.s$|\.S$|\.java$)'
+}
+
+function ztitle {
+    echo "]0;${1}"
+}
+
+# Prompt
+if [ -f /etc/debian_chroot ]
+then
+    CHROOT_NAME=`cat /etc/debian_chroot`
+    export PS1="[ (CHROOT::$CHROOT_NAME) \u@\h ] "
+else
+    export PS1="[ \u@\h ] "
+fi
+
+# Update history etc.
+Z_DEFAULT_ENVIRONMENT_SOURCED=true
+if [ -n "$Z_SHELL_HISTORY" ]
+then
+	Z_SHELL_HISTORY="$Z_SHELL_HISTORY\ndefault.environment,`date`,$0"
+else
+	Z_SHELL_HISTORY="default.environment,`date`,$0"
+fi

@@ -1,0 +1,39 @@
+# -*-sh-*-
+
+###########################################################################
+#
+# environment
+#
+# Load in the appropriate environment.
+#
+###########################################################################
+
+## See http://www.webupd8.org/2010/11/alternative-to-200-lines-kernel-patch.html
+#if [ "$PS1" ] ; then  
+#   mkdir -p -m 0700 /dev/cgroup/cpu/user/$$ > /dev/null 2>&1
+#   echo $$ > /dev/cgroup/cpu/user/$$/tasks
+#   echo "1" > /dev/cgroup/cpu/user/$$/notify_on_release
+#fi
+
+# Export all variables.
+set -a
+
+# Make sure login got sourced in.
+if [ -z "$Z_LOGIN_SOURCED" ]
+then
+	. $ENVIRONMENT/login
+fi
+
+# Source in the environment.
+. $ENVIRONMENT/$Z_ENVIRONMENT.environment
+
+# Update history etc.
+Z_ENVIRONMENT_SOURCED=true
+if [ -n "$Z_SHELL_HISTORY" ]
+then
+	Z_SHELL_HISTORY="$Z_SHELL_HISTORY\nenvironment,`date`,$0"
+else
+	Z_SHELL_HISTORY="environment,`date`,$0"
+fi
+
+cd $HOME
