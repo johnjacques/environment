@@ -28,6 +28,9 @@ CRAFTY_LOG_PATH=/home/john/.crafty
 CRAFTY_BOOK_PATH=/home/john/.crafty
 CRAFTY_RC_PATH=/home/john/.crafty
 
+# Avoid problems with older versions of IBus
+IBUS_ENABLE_SYNC_MODE=1
+
 # Handle ssh-agent/ssh-add automatically.
 
 SSH_ENV="$HOME/.ssh/environment"
@@ -38,19 +41,18 @@ function start_agent {
     echo succeeded
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add;
+    /usr/bin/ssh-add >/dev/null 2>&1;
 }
 
 # Source SSH settings, if applicable
 
 if [ -f "${SSH_ENV}" ]; then
     . "${SSH_ENV}" > /dev/null
-    #ps ${SSH_AGENT_PID} doesn't work under cywgin
     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-        start_agent;
+        start_agent >/dev/null;
     }
 else
-    start_agent;
+    start_agent >/dev/null;
 fi
 
 # Start out with the default environment.
