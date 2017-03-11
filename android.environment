@@ -1,0 +1,32 @@
+#-*-sh-*-
+
+###########################################################################
+#
+# android.environment
+#
+# Android development environment
+#
+###########################################################################
+
+# Source the default environment
+. $HOME/.environment/default.environment
+
+SDK=/home/john/Android/android-sdk-linux
+STUDIO=/home/john/Android/android-studio
+
+PATH=$SDK/tools\
+:$SDK/platform-tools\
+:$STUDIO/bin\
+:$PATH
+
+# Prompt
+export PS1="[ \u@\h android ] "
+
+# Update history etc.
+Z_DEFAULT_ENVIRONMENT_SOURCED=true
+if [ -n "$Z_SHELL_HISTORY" ]
+then
+	Z_SHELL_HISTORY="$Z_SHELL_HISTORY\nandroid.environment,`date`,$0"
+else
+	Z_SHELL_HISTORY="android.environment,`date`,$0"
+fi
