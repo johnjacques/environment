@@ -12,7 +12,7 @@
 set -a
 
 # Environment Directory
-ENVIRONMENT=$HOME/.environment
+ENVIRONMENT=$HOME/environment
 
 # Path
 ORIGINAL_PATH=$PATH
