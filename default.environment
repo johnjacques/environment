@@ -121,7 +121,7 @@ then
 fi
 
 # Prompt
-export PS1="[ \u@\h ] "
+export PS1="[\u@\h \j] "
 
 # Update history etc.
 Z_DEFAULT_ENVIRONMENT_SOURCED=true
