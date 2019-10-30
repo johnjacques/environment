@@ -16,8 +16,74 @@ ENVIRONMENT=$HOME/environment
 
 # Path
 ORIGINAL_PATH=$PATH
-PATH=$HOME/bin\
-:$ORIGINAL_PATH
+
+if [ "Linux" = `uname` ]
+then
+    lsb_release >/dev/null 2>&1
+    if [ $? -eq 0 ]
+    then
+	DISTRIBUTOR=`lsb_release -i | awk '{print $3}' | sed 's/\ //g'`
+	RELEASE=`lsb_release -r | awk '{print $2}' | sed 's/\ //g'`
+
+	if [ -d /workspace/sw/jjacques/apps/$DISTRIBUTOR/$RELEASE ]
+	then
+	    MYAPPS=/workspace/sw/jjacques/apps/$DISTRIBUTOR/$RELEASE
+	    MYAPPSPATH=$MYAPPS/bin:$MYAPPS/usr/sbin
+	else
+	    unset MYAPPSPATH
+	fi
+
+	if [ "Ubuntu" != "$DISTRIBUTOR" ]
+	then
+	    PATH=$PATH:/tools/AGRtools/python-2.7.10/bin
+	    PATH=$PATH:/tools/AGRtools/python-3.5.1/bin
+	fi
+    fi
+fi
+
+PATH=$HOME/scripts
+
+if [ ! -z $MYAPPSPATH ]
+then
+    PATH=$PATH:$MYAPPSPATH
+fi
+
+PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin
+
+# Find the XFCE applications, if available...
+ls -d /opt/xfce* >/dev/null 2>&1
+
+if [ "$?" = "0" ]
+    then
+    XFCE=`ls -d /opt/xfce*`
+    PATH=$PATH:$XFCE/bin
+    MANPATH=`manpath`:$XFCE/share/man
+fi
+
+# Proxies (-us, -fm, -chain, or -jf are reasonable options...)
+http_proxy=http://proxy-chain.intel.com:911
+HTTP_PROXY=$http_proxy
+https_proxy=http://proxy-chain.intel.com:912
+HTTPS_PROXY=$https_proxy
+ftp_proxy=http://proxy-chain.intel.com:911
+FTP_PROXY=$ftp_proxy
+socks_proxy=http://proxy-chain.intel.com:1080
+SOCKS_PROXY=$socks_proxy
+no_proxy=intel.com,.intel.com,10.0.0.0/8,192.168.0.0/16,localhost,127.0.0.0/8,134.134.0.0/16
+NO_PROXY=$no_proxy
+
+# For git...
+export GIT_SSL_NO_VERIFY=true
+
+# Errata
+PAGER=less
+EDITOR=vi
+HISTCONTROL=ignoreboth:erasedups
+HISTSIZE=5000
+PRINTER=UNKNOWN
+#TERM=vt100
+CVSROOT=":pserver:jjacques@aus-cvs:/export/cvsroot/sw"
+LSF_ENVDIR=/tools/lsfadm/conf
 
 # Start out with the default environment.
 Z_ENVIRONMENT=default
