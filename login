@@ -36,5 +36,3 @@ fi
 
 # Source in the environment
 source $ENV
-
-cd $HOME

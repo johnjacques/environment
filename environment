@@ -28,5 +28,3 @@ then
 else
 	Z_SHELL_HISTORY="environment,`date`,$0"
 fi
-
-cd $HOME
