@@ -1,0 +1,57 @@
+#-*-sh-*-
+
+###########################################################################
+#
+# snr.environment
+#
+# SNR development environment.
+#
+###########################################################################
+
+# Source in the default environment
+. $HOME/.environment/default.environment
+
+# JAVA
+#JAVA_HOME=/tools/AGRtools/jdk-1.7.0_01
+#JAVA_HOME=/tools/AGRtools/jdk-1.7.0_51-x86_64
+JAVA_HOME=/tools/AGRtools/jdk1.8.0_144
+
+## Simics License
+#SIMICS_LICENSE_FILE=28030@simics01p.elic.intel.com
+
+# Simics
+SIMICS_HOME=/tools/AGRtools/simics/simics-5.0/simics-5.0.140
+
+# Klocwork
+KLOCKWORK_HOME=/tools/AGRtools/klocwork/klocwork-client
+
+# Path
+PATH=/tools/AGRtools/gnutools-rhel6/bin\
+:/v/share/conda/envs/dev/bin\
+:/tools/AGRtools/perl-5.18.0/bin\
+:${SIMICS_HOME}/linux64/bin\
+:${KLOCKWORK_HOME}/bin\
+:${JAVA_HOME}/bin\
+:${PATH}
+
+# Library Path
+ORIGINAL_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+LD_LIBRARY_PATH=/tools/AGRtools/include/boost_1_57_0/lib\
+:$ORIGINAL_LD_LIBRARY_PATH\
+:$SIMICS_HOME/linux64/bin\
+:$SIMICS_HOME/linux64/sys/lib
+
+# Clean up the PATH
+PATH=`zclpath : $PATH`
+
+# Prompt
+PS1="[\u@\h snr \j] "
+
+# Update history etc.
+Z_DEFAULT_ENVIRONMENT_SOURCED=true
+if [ -n "$Z_SHELL_HISTORY" ]
+then
+	Z_SHELL_HISTORY="$Z_SHELL_HISTORY\nsnr.environment,`date`,$0"
+else
+	Z_SHELL_HISTORY="snr.environment,`date`,$0"
+fi
