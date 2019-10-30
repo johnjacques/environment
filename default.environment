@@ -104,20 +104,25 @@ function agent_start {
     . ~/.ssh/agent.`hostname`.env >/dev/null 2>&1
 }
 
-if ! agent_is_running
-then
-    agent_load_env
-fi
+type ssh-agent >/dev/null 2>&1
 
-# if your keys are not stored in ~/.ssh/id_rsa or ~/.ssh/id_dsa, you'll need
-# to paste the proper path after ssh-add
-if ! agent_is_running
+if test $? -eq 0
 then
-    agent_start
-    ssh-add >/dev/null 2>&1
-elif ! agent_has_keys
-then
-    ssh-add >/dev/null 2>&1
+    if ! agent_is_running
+    then
+	agent_load_env
+    fi
+
+    # if your keys are not stored in ~/.ssh/id_rsa or ~/.ssh/id_dsa, you'll need
+    # to paste the proper path after ssh-add
+    if ! agent_is_running
+    then
+	agent_start
+	ssh-add >/dev/null 2>&1
+    elif ! agent_has_keys
+    then
+	ssh-add >/dev/null 2>&1
+    fi
 fi
 
 # Prompt
