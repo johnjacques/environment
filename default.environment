@@ -75,6 +75,22 @@ function ztitle {
     echo "]0;${1}"
 }
 
+function zclpath {
+    OUT=""
+
+    for item in `echo $2 | tr \'$1\' '\n' | awk ' !x[$0]++'`
+    do
+      if [ "" = "$OUT" ]
+	  then
+	  OUT="$item"
+      else
+	  OUT="$OUT:$item"
+      fi
+    done
+
+    echo $OUT
+}
+
 # Note: Don't bother checking SSH_AGENT_PID. It's not used
 #       by SSH itself, and it might even be incorrect
 #       (for example, when using agent-forwarding over SSH).
