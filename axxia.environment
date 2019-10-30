@@ -1,0 +1,74 @@
+#-*-sh-*-
+
+###########################################################################
+#
+# axxia.environment
+#
+# AXXIA AXXIA development environment.
+#
+###########################################################################
+
+# Source in the default environment
+. $HOME/.environment/default.environment
+
+# Normal NCP_SRC
+NCP_SRC=/workspace/sw/jjacques/projects/axxia/rte/trunk
+NCP_MULTI_BUILDS="true"
+
+# Repository
+SVNROOT=http://txasoft2.lsi.com/svn/software
+
+# DS-5
+#DS5_HOME=/tools/AGRreleases/ds5/arm-ds-5.20-x86
+#DS5_HOME=/tools/AGRreleases/ds5/arm-ds-5.20.2-x86_64
+#DS5_HOME=/tools/AGRtools/DS-5/arm-ds5-23.1-x86_64
+#DS5_HOME=/tools/AGRtools/DS-5/arm-ds5-24.1-x86_64
+DS5_HOME=/tools/AGRtools/DS-5/DS-5_v5.29.2
+
+# ANT
+ANT_HOME=/tools/AGRtools/apache-ant-1.7.1
+
+# JAVA
+#JAVA_HOME=/tools/AGRtools/jdk-1.7.0_01
+#JAVA_HOME=/tools/AGRtools/jdk-1.7.0_51-x86_64
+#JAVA_HOME=/tools/AGRtools/jdk1.8.0_144
+JAVA_HOME=/tools/AGRtools/jdk1.8.0_201
+
+# ECLIPSE
+ECLIPSE_HOME=/tools/AGRtools/eclipse-sdk-3.7.1-ds-5.12
+
+# Lab stuff
+LAB_HOME=/workspace/sw/jjacques/projects/axxia/lab
+
+# emake (this and /export/output/BuddyBuild/i686_Linux/bin below)
+EMAKE_CM=txasoft16:8888
+
+# Klocwork
+KLOCKWORK_HOME=/tools/AGRtools/klocwork/klocwork-client
+
+# Path
+PATH=/tools/AGRtools/perl-5.18.0/bin\
+:${DS5_HOME}/bin\
+:${ANT_HOME}/bin\
+:${JAVA_HOME}/bin\
+:/v/share/conda/envs/dev/bin\
+:/tools/AGRtools/lttng-ust/bin\
+:${KLOCKWORK_HOME}/bin\
+:${LAB_HOME}/scripts\
+:/export/output/Huddle/i686_Linux/bin\
+:${PATH}
+
+# Clean up the PATH
+PATH=`zclpath : $PATH`
+
+# Prompt
+PS1="[\u@\h axxia \j] "
+
+# Update history etc.
+Z_DEFAULT_ENVIRONMENT_SOURCED=true
+if [ -n "$Z_SHELL_HISTORY" ]
+then
+	Z_SHELL_HISTORY="$Z_SHELL_HISTORY\naxxia.environment,`date`,$0"
+else
+	Z_SHELL_HISTORY="axxia.environment,`date`,$0"
+fi
