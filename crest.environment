@@ -16,9 +16,11 @@
 #JAVA_HOME=/tools/AGRtools/jdk-1.7.0_51-x86_64
 JAVA_HOME=/tools/AGRtools/jdk1.8.0_144
 
-ARMLMD_LICENSE_FILE=8225@arm09p.elic.intel.com
+# ANT
+ANT_HOME=/tools/AGRtools/apache-ant-1.7.1
 
-export ASE_INSTALL=/workspace/sw/jjacques/projects/crest/simulation/master_1_0_c86987c_2019_10_29/ase
+# ARM License
+ARMLMD_LICENSE_FILE=8225@arm09p.elic.intel.com
 
 # Path
 PATH=${JAVA_HOME}/bin\
