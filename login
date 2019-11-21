@@ -14,30 +14,47 @@ set -a
 # Environment Directory
 ENVIRONMENT=$HOME/environment
 
+# Function to get the Linux Distro and Version
+function getdv {
+    if [ -f /etc/os-release ]; then
+	# freedesktop.org and systemd
+	. /etc/os-release
+	DISTRO=$NAME
+	VER=$VERSION_ID
+    elif type lsb_release >/dev/null 2>&1; then
+	# linuxbase.org
+	DISTRO=$(lsb_release -si)
+	VER=$(lsb_release -sr)
+    else
+	# Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
+	DISTRO=$(uname -s)
+	VER=$(uname -r)
+    fi
+
+    echo "$DISTRO:$VER"
+}
+
 # Path
 ORIGINAL_PATH=$PATH
 
 if [ "Linux" = `uname` ]
 then
-    lsb_release >/dev/null 2>&1
-    if [ $? -eq 0 ]
+    DV=$(getdv)
+    DISTRO=$(echo $DV | cut -d':' -f1)
+    VER=$(echo $DV | cut -d':' -f2)
+
+    if [ -d /workspace/sw/jjacques/apps/$DISTRO/$VER ]
     then
-	DISTRIBUTOR=`lsb_release -i | awk '{print $3}' | sed 's/\ //g'`
-	RELEASE=`lsb_release -r | awk '{print $2}' | sed 's/\ //g'`
+	MYAPPS=/workspace/sw/jjacques/apps/$DISTRO/$VER
+	MYAPPSPATH=$MYAPPS/bin:$MYAPPS/usr/sbin
+    else
+	unset MYAPPSPATH
+    fi
 
-	if [ -d /workspace/sw/jjacques/apps/$DISTRIBUTOR/$RELEASE ]
-	then
-	    MYAPPS=/workspace/sw/jjacques/apps/$DISTRIBUTOR/$RELEASE
-	    MYAPPSPATH=$MYAPPS/bin:$MYAPPS/usr/sbin
-	else
-	    unset MYAPPSPATH
-	fi
-
-	if [ "Ubuntu" != "$DISTRIBUTOR" ]
-	then
-	    PATH=$PATH:/tools/AGRtools/python-2.7.10/bin
-	    PATH=$PATH:/tools/AGRtools/python-3.5.1/bin
-	fi
+    if [ "Ubuntu" != "$DISTRO" ]
+    then
+	PATH=$PATH:/tools/AGRtools/python-2.7.10/bin
+	PATH=$PATH:/tools/AGRtools/python-3.5.1/bin
     fi
 fi
 
