@@ -58,7 +58,12 @@ then
     fi
 fi
 
-PATH=$HOME/scripts
+if [ -d $HOME/bin ]
+then
+    PATH=$HOME/scripts:$HOME/bin
+else
+    PATH=$HOME/scripts
+fi
 
 if [ ! -z $MYAPPSPATH ]
 then
