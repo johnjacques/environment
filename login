@@ -43,18 +43,12 @@ then
     DISTRO=$(echo $DV | cut -d':' -f1)
     VER=$(echo $DV | cut -d':' -f2)
 
-    if [ -d /workspace/sw/jjacques/apps/$DISTRO/$VER ]
+    if [ -d $HOME/apps/$DISTRO/$VER ]
     then
-	MYAPPS=/workspace/sw/jjacques/apps/$DISTRO/$VER
+	MYAPPS=$HOME/apps/$DISTRO/$VER
 	MYAPPSPATH=$MYAPPS/bin:$MYAPPS/usr/sbin
     else
 	unset MYAPPSPATH
-    fi
-
-    if [ "Ubuntu" != "$DISTRO" ]
-    then
-	PATH=$PATH:/tools/AGRtools/python-2.7.10/bin
-	PATH=$PATH:/tools/AGRtools/python-3.5.1/bin
     fi
 fi
 
