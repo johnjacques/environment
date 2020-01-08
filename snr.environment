@@ -9,7 +9,7 @@
 ###########################################################################
 
 # Source in the default environment
-. $HOME/.environment/default.environment
+. $ENVIRONMENT/default.environment
 
 # JAVA
 #JAVA_HOME=/tools/AGRtools/jdk-1.7.0_01
@@ -18,6 +18,7 @@ JAVA_HOME=/tools/AGRtools/jdk1.8.0_144
 
 ## Simics License
 #SIMICS_LICENSE_FILE=28030@simics01p.elic.intel.com
+ARMLMD_LICENSE_FILE=8225@arm09p.elic.intel.com
 
 # Simics
 SIMICS_HOME=/tools/AGRtools/simics/simics-5.0/simics-5.0.140

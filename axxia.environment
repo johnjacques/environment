@@ -4,12 +4,12 @@
 #
 # axxia.environment
 #
-# AXXIA AXXIA development environment.
+# AXXIA development environment.
 #
 ###########################################################################
 
 # Source in the default environment
-. $HOME/.environment/default.environment
+. $ENVIRONMENT/default.environment
 
 # Normal NCP_SRC
 NCP_SRC=/workspace/sw/jjacques/projects/axxia/rte/trunk
