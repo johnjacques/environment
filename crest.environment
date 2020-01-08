@@ -9,7 +9,7 @@
 ###########################################################################
 
 # Source in the default environment
-. $HOME/.environment/default.environment
+. $ENVIRONMENT/default.environment
 
 # JAVA
 #JAVA_HOME=/tools/AGRtools/jdk-1.7.0_01
