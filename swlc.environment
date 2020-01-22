@@ -1,0 +1,43 @@
+#-*-sh-*-
+
+###########################################################################
+#
+# swlc.environment
+#
+# SWLC development environment.
+#
+###########################################################################
+
+# Source in the default environment
+. $ENVIRONMENT/default.environment
+
+# Protex client
+PROTEX=/workspace/sw/jjacques/protex/7.8/blackduck/protexIP
+
+# Klocwork client
+KLOCWORK=/tools/AGRtools/klocwork
+
+# Path
+PATH=${PROTEX}/bin\
+:${KLOCWORK}/klocwork-server/bin\
+:${KLOCWORK}/klocwork-client/bin\
+:${PATH}
+
+# Library Path
+ORIGINAL_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+LD_LIBRARY_PATH=$ORIGINAL_LD_LIBRARY_PATH
+
+# Clean up the PATH
+PATH=`zclpath : $PATH`
+
+# Prompt
+PS1="[\u@\h swlc \j] "
+
+# Update history etc.
+Z_DEFAULT_ENVIRONMENT_SOURCED=true
+if [ -n "$Z_SHELL_HISTORY" ]
+then
+	Z_SHELL_HISTORY="$Z_SHELL_HISTORY\nswlc.environment,`date`,$0"
+else
+	Z_SHELL_HISTORY="swlc.environment,`date`,$0"
+fi
