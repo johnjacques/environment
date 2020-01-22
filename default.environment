@@ -63,6 +63,17 @@ function zmode {
     Z_ENVIRONMENT=default
 }
 
+function zrun {
+    if [ ! -f "${ENVIRONMENT}/${1}.environment" ]
+    then
+        echo "${1} is not a valid mode!"
+    else
+	. "${ENVIRONMENT}/${1}.environment"
+	shift
+	${SHELL} -c "${@}"
+    fi
+}
+
 function zstamp {
     echo "`date +%d%b%Y`_`date +%Hh%Mm%Ss`"
 }
