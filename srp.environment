@@ -2,9 +2,9 @@
 
 ###########################################################################
 #
-# crest.environment
+# srp.environment
 #
-# CREST development environment.
+# SRP development environment.
 #
 ###########################################################################
 
@@ -34,13 +34,13 @@ LD_LIBRARY_PATH=$ORIGINAL_LD_LIBRARY_PATH
 PATH=`zclpath : $PATH`
 
 # Prompt
-PS1="[\u@\h crest \j] "
+PS1="[\u@\h srp \j] "
 
 # Update history etc.
 Z_DEFAULT_ENVIRONMENT_SOURCED=true
 if [ -n "$Z_SHELL_HISTORY" ]
 then
-	Z_SHELL_HISTORY="$Z_SHELL_HISTORY\ncrest.environment,`date`,$0"
+	Z_SHELL_HISTORY="$Z_SHELL_HISTORY\nsrp.environment,`date`,$0"
 else
-	Z_SHELL_HISTORY="crest.environment,`date`,$0"
+	Z_SHELL_HISTORY="srp.environment,`date`,$0"
 fi
