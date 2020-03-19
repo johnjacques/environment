@@ -127,6 +127,10 @@ function agent_start {
     . ~/.ssh/agent.`hostname`.env >/dev/null 2>&1
 }
 
+function add_keys {
+    ssh-add ~/.ssh/id_rsa ~/.ssh/id_rsa.eruditelite ~/.ssh/id_rsa.johnjacques
+}
+
 type ssh-agent >/dev/null 2>&1
 
 if test $? -eq 0
@@ -142,9 +146,11 @@ then
     then
 	agent_start
 	ssh-add >/dev/null 2>&1
+	add_keys >/dev/null 2>&1
     elif ! agent_has_keys
     then
 	ssh-add >/dev/null 2>&1
+	add_keys >/dev/null 2>&1
     fi
 fi
 
