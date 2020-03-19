@@ -17,6 +17,7 @@ ENVIRONMENT=$HOME/environment
 # Path
 ORIGINAL_PATH=$PATH
 PATH=$HOME/bin\
+:$HOME/.local/bin\
 :$ORIGINAL_PATH
 
 # Start out with the default environment.
