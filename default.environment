@@ -42,7 +42,7 @@ function zsize {
 }
 
 function zclean {
-    find . -type f -name '*~' -o -name 'core' | while read file
+    find . -type f -name '*~' -o -type f -name 'core' | while read file
     do
 	echo "Removing $file"
 	rm -f "$file"
