@@ -1,0 +1,35 @@
+#
+## Control-^ (usually Control-Shift-6) is traditional and the only key
+## not used by emacs
+# Use Ctrl-\
+escape ^\\\
+# Use Ctrl-Z
+#escape ^Zz
+# Use Ctrl-]
+#escape ^]^]
+# Use Ctrl-space
+#escape ^@@
+# Use Ctrl-T
+#escape "^T^T"
+#
+## do not trash BackSpace, usually DEL
+bindkey -k kb
+bindkey -d -k kb
+#
+## do not trash Delete, usually ESC [ 3 ~
+bindkey -k kD
+bindkey -d -k kD
+
+
+
+autodetach on
+startup_message off
+hardstatus alwayslastline
+shelltitle 'bash'
+
+hardstatus string '[%S][%H][%`:%t][%l]'
+backtick 0 30 30 sh -c 'screen -ls | grep --color=no -o "$PPID[^[:space:]]*"'
+
+termcapinfo rxvt-unicode ti@:te@
+termcapinfo rxvt ti@:te@
+termcapinfo rxvt 'hs:ts=\E]2;:fs=07:ds=\E]2;screen07'
