@@ -77,15 +77,15 @@ if [ "$?" = "0" ]
 fi
 
 # Proxies (-us, -fm, -chain, or -jf are reasonable options...)
-http_proxy=http://proxy-chain.intel.com:911
+http_proxy=http://proxy-us.intel.com:911
 HTTP_PROXY=$http_proxy
-https_proxy=http://proxy-chain.intel.com:912
+https_proxy=http://proxy-us.intel.com:912
 HTTPS_PROXY=$https_proxy
-ftp_proxy=http://proxy-chain.intel.com:911
+ftp_proxy=http://proxy-us.intel.com:911
 FTP_PROXY=$ftp_proxy
-socks_proxy=http://proxy-chain.intel.com:1080
+socks_proxy=http://proxy-us.intel.com:1080
 SOCKS_PROXY=$socks_proxy
-no_proxy=intel.com,.intel.com,10.0.0.0/8,192.168.0.0/16,localhost,127.0.0.0/8,134.134.0.0/16
+no_proxy=10.0.0.0/8,192.168.0.0/16,localhost,127.0.0.0/8
 NO_PROXY=$no_proxy
 
 # For git...
@@ -122,3 +122,4 @@ set +a
 
 # Source in the environment
 source $ENV
+source ~/.bashrc
