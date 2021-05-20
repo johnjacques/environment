@@ -16,6 +16,9 @@
 #JAVA_HOME=/tools/AGRtools/jdk-1.7.0_51-x86_64
 JAVA_HOME=/tools/AGRtools/jdk1.8.0_144
 
+# ANT
+ANT_HOME=/tools/AGRtools/apache-ant-1.7.1
+
 ## Simics License
 #SIMICS_LICENSE_FILE=28030@simics01p.elic.intel.com
 ARMLMD_LICENSE_FILE=8225@arm09p.elic.intel.com
@@ -33,6 +36,7 @@ PATH=/tools/AGRtools/gnutools-rhel6/bin\
 :${SIMICS_HOME}/linux64/bin\
 :${KLOCKWORK_HOME}/bin\
 :${JAVA_HOME}/bin\
+:${ANT_HOME}/bin\
 :${PATH}
 
 # Library Path
