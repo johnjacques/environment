@@ -1,0 +1,44 @@
+#-*-sh-*-
+
+###########################################################################
+#
+# grr.environment
+#
+# GRR development environment.
+#
+###########################################################################
+
+# Source in the default environment
+. $ENVIRONMENT/default.environment
+
+# JAVA
+JAVA_HOME=/tools/AGRtools/jdk1.8.0_144
+
+# ANT
+ANT_HOME=/tools/AGRtools/apache-ant-1.7.1
+
+# ARM License
+ARMLMD_LICENSE_FILE=8225@arm09p.elic.intel.com
+
+# Path
+PATH=${JAVA_HOME}/bin\
+:${PATH}
+
+# Library Path
+ORIGINAL_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+LD_LIBRARY_PATH=$ORIGINAL_LD_LIBRARY_PATH
+
+# Clean up the PATH
+PATH=`zclpath : $PATH`
+
+# Prompt
+PS1="[\u@\h grr \j] "
+
+# Update history etc.
+Z_DEFAULT_ENVIRONMENT_SOURCED=true
+if [ -n "$Z_SHELL_HISTORY" ]
+then
+	Z_SHELL_HISTORY="$Z_SHELL_HISTORY\ngrr.environment,`date`,$0"
+else
+	Z_SHELL_HISTORY="grr.environment,`date`,$0"
+fi
