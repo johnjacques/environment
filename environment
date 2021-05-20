@@ -29,3 +29,6 @@ then
 else
 	Z_SHELL_HISTORY="environment,`date`,$0"
 fi
+
+# Bind F5 to zclear in puTTY
+bind '"\e[15~":" zclear"' >/dev/null 2>&1
