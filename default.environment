@@ -31,6 +31,11 @@ function zclear {
     clear
     date
     echo -n -e '\e[3J'
+
+    if [ "$(type resize)" != "" ]
+    then
+	resize >/dev/null 2>&1
+    fi
 }
 
 function zinfo {
