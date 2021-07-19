@@ -85,7 +85,7 @@ ftp_proxy=http://proxy-us.intel.com:911
 FTP_PROXY=$ftp_proxy
 socks_proxy=http://proxy-us.intel.com:1080
 SOCKS_PROXY=$socks_proxy
-no_proxy=10.0.0.0/8,192.168.0.0/16,localhost,127.0.0.0/8
+no_proxy=10.0.0.0/8,192.168.0.0/16,localhost,127.0.0.0/8,intel.com
 NO_PROXY=$no_proxy
 
 # For git...
