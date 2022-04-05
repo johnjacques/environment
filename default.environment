@@ -95,7 +95,14 @@ function zsource {
 }
 
 function ztitle {
-    echo "]0;${1}"
+    # Konsole is "special".
+    ps -p $PPID | grep konsole >/dev/null 2>&1
+    if [ $? = 0 ]
+    then
+	echo -ne "\033]30;${1}\007"
+    else
+	echo -ne "]0;${1}"
+    fi
 }
 
 function zclpath {
