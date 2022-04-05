@@ -95,10 +95,11 @@ function zsource {
 }
 
 function ztitle {
-    # Konsole is "special".
-    ps -p $PPID | grep konsole >/dev/null 2>&1
-    if [ $? = 0 ]
+    # Konsole is "special", and there isn't a way to tell it's in use
+    # after ssh... SO, add an option to work with it (-k).
+    if [ "${1}" = "-k" ]
     then
+	shift
 	echo -ne "\033]30;${1}\007"
     else
 	echo -ne "]0;${1}"
