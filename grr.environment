@@ -12,7 +12,7 @@
 . $ENVIRONMENT/default.environment
 
 # JAVA
-JAVA_HOME=/tools/AGRtools/jdk1.8.0_144
+JAVA_HOME=/tools/AGRtools/jdk-11.0.2
 
 # ANT
 ANT_HOME=/tools/AGRtools/apache-ant-1.7.1
