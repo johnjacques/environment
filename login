@@ -34,5 +34,9 @@ else
 	Z_SHELL_HISTORY="login,`date`,$0"
 fi
 
+# Done exporting variables!
+# If this is left on, bash will throw odd '_<command>: line N: syntax error...
+set +a
+
 # Source in the environment
 source $ENV

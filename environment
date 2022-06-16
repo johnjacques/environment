@@ -29,3 +29,7 @@ then
 else
 	Z_SHELL_HISTORY="environment,`date`,$0"
 fi
+
+# Done exporting variables!
+# If this is left on, bash will throw odd '_<command>: line N: syntax error...
+set +a

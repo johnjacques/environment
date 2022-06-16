@@ -10,3 +10,7 @@
 
 # Export all variables.
 set -a
+
+# Done exporting variables!
+# If this is left on, bash will throw odd '_<command>: line N: syntax error...
+set +a
