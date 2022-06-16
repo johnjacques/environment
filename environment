@@ -30,6 +30,9 @@ else
 	Z_SHELL_HISTORY="environment,`date`,$0"
 fi
 
+# Bind F5 to zclear in puTTY
+bind '"\e[15~":" zclear"' >/dev/null 2>&1
+
 # Done exporting variables!
 # If this is left on, bash will throw odd '_<command>: line N: syntax error...
 set +a
