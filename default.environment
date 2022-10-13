@@ -102,7 +102,11 @@ function ztitle {
 	shift
 	echo -ne "\033]30;${1}\007"
     else
-	echo -ne "]0;${1}"
+	## This used to work with some terminal -- xfce maybe?
+	#echo -ne "]0;${1}"
+	## For gnome-terminal, add the title to PS1...
+	TITLE="\[\e]2;${1}\a\]"
+	PS1=${PS1}${TITLE}
     fi
 }
 
