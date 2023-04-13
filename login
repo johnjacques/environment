@@ -43,7 +43,7 @@ then
     DISTRO=$(echo $DV | cut -d':' -f1)
     VER=$(echo $DV | cut -d':' -f2)
 
-    if [ -d $HOME/apps/$DISTRO/$VER ]
+    if [ -d "$HOME/apps/$DISTRO/$VER" ]
     then
 	MYAPPS=$HOME/apps/$DISTRO/$VER
 	MYAPPSPATH=$MYAPPS/bin:$MYAPPS/usr/sbin

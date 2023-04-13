@@ -104,9 +104,8 @@ function ztitle {
     else
 	## This used to work with some terminal -- xfce maybe?
 	#echo -ne "]0;${1}"
-	## For gnome-terminal, add the title to PS1...
-	TITLE="\[\e]2;${1}\a\]"
-	PS1=${PS1}${TITLE}
+	## For gnome-terminal, ]0 instead of ]30
+	echo -ne "\033]0;${1}\007"
     fi
 }
 
@@ -124,6 +123,37 @@ function zclpath {
     done
 
     echo $OUT
+}
+
+function zunuse {
+    DISK=$1
+
+    while read l
+    do
+	if [[ $l ]]
+	then
+	    P=$(echo $l | cut -d' ' -f 1)
+	    MP=$(echo $l | cut -d' ' -f 3)
+	    echo "$P is mounted as $MP, unmounting."
+	    umount $MP
+
+	    if [ $? -ne 0 ]
+	    then
+		echo "umount $MP failed!"
+		exit 1
+	    fi
+	fi
+    done <<< $(mount | grep $DISK)
+
+    while read l
+    do
+	if [[ $l ]]
+	then
+	    P=$(echo $l | cut -d' ' -f1)
+	    echo "$P is used as swap, turning it off."
+	    swapoff $P
+	fi
+    done <<< $(swapon -s | egrep $DISK)
 }
 
 # Note: Don't bother checking SSH_AGENT_PID. It's not used
