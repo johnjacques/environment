@@ -1,0 +1,29 @@
+#-*-sh-*-
+
+###########################################################################
+#
+# yocto.environment
+#
+# Yocto development environment.
+#
+###########################################################################
+
+# Source in the default environment
+. $ENVIRONMENT/default.environment
+
+echo "--> YENV is $1"
+
+# Clean up the PATH
+PATH=`zclpath : $PATH`
+
+# Prompt
+PS1="[\u@\h yocto \j] "
+
+# Update history etc.
+Z_DEFAULT_ENVIRONMENT_SOURCED=true
+if [ -n "$Z_SHELL_HISTORY" ]
+then
+	Z_SHELL_HISTORY="$Z_SHELL_HISTORY\nyocto.environment,`date`,$0"
+else
+	Z_SHELL_HISTORY="yocto.environment,`date`,$0"
+fi
