@@ -12,12 +12,7 @@
 . $ENVIRONMENT/default.environment
 
 # JAVA
-#JAVA_HOME=/tools/AGRtools/jdk1.8.0_201
-#JAVA_HOME=/tools/AGRtools/jdk-11.0.2
-JAVA_HOME=/usr/intel/pkgs/openjdk/11.0.2
-
-# ARM License
-ARMLMD_LICENSE_FILE=8225@arm09p.elic.intel.com
+JAVA_HOME=/tools/AGRtools/jdk1.8.0_201
 
 # Path
 PATH=${JAVA_HOME}/bin\

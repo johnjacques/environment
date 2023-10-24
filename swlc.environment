@@ -17,6 +17,9 @@ PROTEX=/workspace/sw/swbuilds/tools/Protex/v7.8.4p1/protexIP
 # Klocwork client
 KLOCWORK=/tools/AGRtools/klocwork
 
+# Coverity
+#COVERITY=
+
 # Path
 PATH=${PROTEX}/bin\
 :${KLOCWORK}/klocwork-server/bin\

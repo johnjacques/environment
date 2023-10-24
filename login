@@ -123,3 +123,10 @@ set +a
 # Source in the environment
 source $ENV
 source ~/.bashrc
+
+# New environment setting added by Protex on Fri Apr 21 17:39:45 CDT 2023 1.
+# The unmodified version of this file is saved in /home/jjacques/.bash_profile964504836.
+# Do NOT modify these lines; they are used to uninstall.
+PATH="/workspace/sw/jjacques/projects/protex/install/protexIP/bin:${PATH}"
+export PATH
+# End comments by InstallAnywhere on Fri Apr 21 17:39:45 CDT 2023 1.
